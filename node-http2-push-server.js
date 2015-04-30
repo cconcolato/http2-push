@@ -16,7 +16,7 @@ function onRequest(request, response) {
   console.log(filename);
   var query = querystring.parse(parsedUrl.query);  
   console.log(query);
-  if (!Array.isArray(query.push)) {
+  if (query.push && !Array.isArray(query.push)) {
     query.push = [ query.push ];
   }
   if (request.method === "GET" && (filename.indexOf(__dirname) === 0) && fs.existsSync(filename) && fs.statSync(filename).isFile()) {
