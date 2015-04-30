@@ -24,22 +24,23 @@ function onRequest(request, response) {
 
     if (doPush && response.push && query.push) {
       for (var i = 0; i < query.push.length; i++) {
-        pushObjects[i] = response.push(query.push[i]);
+        pushObjects[i] = response.push("/"+query.push[i]);
         pushObjects[i].writeHead(200);
         console.log("Sending push promise for "+query.push[i]);
       }
     }    
 
-    fs.createReadStream(filename).pipe(response);
-
+    response.write(fs.readFileSync(filename));
     console.log("Peer-originated request ended");
 
     if (doPush && response.push  && query.push) {
       for (var i = 0; i < query.push.length; i++) {
-        fs.createReadStream(path.join(__dirname, query.push[i])).pipe(pushObjects[i]);
+        pushObjects[i].end(fs.readFileSync(filename));
         console.log("Ending push of promised url "+query.push[i]);
       }
     }    
+
+    response.end();
   } else {
     response.writeHead('404');
     response.end();
