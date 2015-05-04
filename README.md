@@ -1,5 +1,5 @@
 # http2-push
-Simple Client/Server test for XHR on Pushed Promises
+Simple Client/Server test for XHR on HTTP/2 Push Promises
 
 The server is a simple HTTP/2 server running on localhost, based on NodeJS and its http2 module. It responds to simple queries like '''https://localhost:8091/file1.txt''' or to queries such as '''https://localhost:8091/file1.txt?push=file2.txt''' pushing file2.txt as a Push Promise when file1.txt is requested. 
 
