@@ -35,7 +35,7 @@ function onRequest(request, response) {
 
     if (doPush && response.push  && query.push) {
       for (var i = 0; i < query.push.length; i++) {
-        pushObjects[i].end(fs.readFileSync(filename));
+        pushObjects[i].end(fs.readFileSync(path.join(__dirname, query.push[i])));
         console.log("Ending push of promised url "+query.push[i]);
       }
     }    
