@@ -11,11 +11,11 @@ function onRequest(request, response) {
   var pushObjects = [];
   console.log("Received request: "+request.method+" "+request.url);
   var parsedUrl = urlparser.parse(request.url);
-  console.log(parsedUrl);
+  //console.log(parsedUrl);
   var filename = path.join(__dirname, parsedUrl.pathname);
-  console.log(filename);
+  //console.log(filename);
   var query = querystring.parse(parsedUrl.query);  
-  console.log(query);
+  //console.log(query);
   if (query.push && !Array.isArray(query.push)) {
     query.push = [ query.push ];
   }
